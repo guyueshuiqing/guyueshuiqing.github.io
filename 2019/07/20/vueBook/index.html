@@ -1,0 +1,2603 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Vue学习文档, GuYue">
+    <meta name="description" content="Vue文档Vue basicMVC、MVP、MVVMMVC
+m层和v层直接打交道，导致这两层还存在耦合的
+因为所有逻辑都写在c层，导致c层特别臃肿
+MVP
+p层代替了了c层，v层和m层的交互被p层隔断，从理论上去除了v和m层的耦合
+但是造成">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Vue学习文档 | GuYue</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+        code[class*="language-"], pre[class*="language-"] {
+            white-space: pre !important;
+        }
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">GuYue</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">GuYue</div>
+        <div class="logo-desc">
+            
+            A wandering programmer,a quiet person
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/guyueshuiqing" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/guyueshuiqing" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Vue学习文档
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Typora/" target="_blank">
+                                <span class="chip bg-color">Typora</span>
+                            </a>
+                        
+                            <a href="/tags/Markdown/" target="_blank">
+                                <span class="chip bg-color">Markdown</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/前端/" class="post-category" target="_blank">
+                                前端
+                            </a>
+                        
+                            <a href="/categories/前端/vue/" class="post-category" target="_blank">
+                                vue
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-07-20
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        6.2k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        27 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Vue文档"><a href="#Vue文档" class="headerlink" title="Vue文档"></a>Vue文档</h1><h2 id="Vue-basic"><a href="#Vue-basic" class="headerlink" title="Vue basic"></a>Vue basic</h2><h3 id="MVC、MVP、MVVM"><a href="#MVC、MVP、MVVM" class="headerlink" title="MVC、MVP、MVVM"></a>MVC、MVP、MVVM</h3><h4 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h4><p><img src="https://upload-images.jianshu.io/upload_images/1975281-46d1325ddcb26c72.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp" alt="img"></p>
+<p>m层和v层直接打交道，导致这两层还存在耦合的</p>
+<p>因为所有逻辑都写在c层，导致c层特别臃肿</p>
+<h4 id="MVP"><a href="#MVP" class="headerlink" title="MVP"></a>MVP</h4><p><img src="https://upload-images.jianshu.io/upload_images/1975281-3d0708d1c6d0d13c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp" alt="img"></p>
+<p>p层代替了了c层，v层和m层的交互被p层隔断，从理论上去除了v和m层的耦合</p>
+<p>但是造成p层比原来的c层更加臃肿，为了缓解这种臃肿，MVVM出现了</p>
+<h4 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h4><p><img src="https://upload-images.jianshu.io/upload_images/1975281-0f927ea02175ea30.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp" alt="img"></p>
+<hr>
+<h3 id="基础指令"><a href="#基础指令" class="headerlink" title="基础指令"></a>基础指令</h3><ul>
+<li><code>v-cloak</code> 或<code></code>能够解决 插值表达式的闪烁问题 不过需要在style里设置样式<pre><code>  `[v-cloak]{
+      display: none !important;
+  }`  </code></pre></li>
+<li><code>v-text</code> 没有闪烁问题 <code>v-text</code>会覆盖标签里的内容  </li>
+<li><code>v-html</code> 会将元素当做HTML解析，上面两个只会当做文本 </li>
+<li><code>v-bind</code> 绑定属性 缩写  <code>:</code> </li>
+<li><code>v-on</code> 绑定事件 缩写 <code>@</code>  绑定的方法可以加括号方便传参数</li>
+<li><code>v-model</code>实现数据的双向绑定</li>
+<li><code>.stop</code> 阻止事件冒泡  </li>
+<li><code>.capture</code> 使用捕获机制  </li>
+<li><code>.self</code> 只有点击当前元素时才触发事件</li>
+<li><code>.prevent</code> 去阻止默认行为  </li>
+<li><code>.once</code> 只触发一次事件处理函数</li>
+<li><code>v-for</code> 遍历对象 注意：除了有item key 之外还有索引i 如<code>v-for=&quot;(item,key,i) in user</code> 使用<code>:key=&quot;item&quot;</code>指定绑定的key key需要具有唯一性(最好为后台数据库传过来json数据的id)（只能使用<code>number</code> 或者<code>String</code>）</li>
+<li><code>v-if</code> 的特点是每次都会重新删除或者创建元素 有较高的切换性能消耗 （频繁的切换最好不用）</li>
+<li><code>v-show</code> 不会每次都操作DOM的创建和删除，只是切换了元素的<code>display:none;</code>的样式 有较高的初始渲染消耗</li>
+</ul>
+<hr>
+<h3 id="Vue实例中的属性"><a href="#Vue实例中的属性" class="headerlink" title="Vue实例中的属性"></a>Vue实例中的属性</h3><ul>
+<li><p><code>el</code> 表示要控制页面的区域</p>
+</li>
+<li><p><code>data</code> 表示data中存放的是el中用到的数据</p>
+</li>
+<li><p><code>methods</code> 存放所需方法，主要处理业务逻辑</p>
+</li>
+<li><p><code>computed</code> 计算属性 主要当做属性来使用，可在其中进行算数逻辑运算，存在缓存机制性能更高 以减轻模板重量 使程序便于维护</p>
+</li>
+<li><p><code>watch</code> 监视 监视对象在data中 接收一个回调函数 函数参数<code>ewValue</code>和<code>oldValue</code>，可以看做<code>computed</code>和<code>methods</code>的结合体</p>
+</li>
+</ul>
+<hr>
+<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><h4 id="1、组件化的特性"><a href="#1、组件化的特性" class="headerlink" title="1、组件化的特性:"></a>1、组件化的特性:</h4><blockquote>
+<p>高内聚性，组建功能必须是完整的，如我要实现下拉菜单功能，那在下拉菜单这个组件中，就把下拉菜单所需要的所有功能全部实现。<br>低耦合度，通俗点说，代码独立不会和项目中的其他代码发生冲突。在实际工程中，我们经常会涉及到团队协作，传统按照业务线去编写代码的方式，就很容易相互冲突，所以运用组件化方式就可大大避免这种冲突的存在、每一个组件都有子集清晰的职责，完整的功能，较低的耦合便于单元测试和重复利用。</p>
+</blockquote>
+<h4 id="2、组件化的优点"><a href="#2、组件化的优点" class="headerlink" title="2、组件化的优点:"></a>2、组件化的优点:</h4><blockquote>
+<p>提高开发效率<br>方便重复使用<br>简化调试步骤<br>提升整个项目的可维护性<br>便于协同开</p>
+</blockquote>
+<hr>
+<h3 id="Vue生命周期"><a href="#Vue生命周期" class="headerlink" title="Vue生命周期"></a>Vue生命周期</h3><p><img src="https://cn.vuejs.org/images/lifecycle.png" alt="生命周期钩子"></p>
+<ul>
+<li><p><code>beforeCreate</code>（创建前） 在数据观测和初始化事件还未开始</p>
+</li>
+<li><p><code>created</code>（创建后） 完成数据观测，属性和方法的运算，初始化事件，$el属性还没有显示出来</p>
+</li>
+<li><p><code>beforeMount</code>（载入前） 在挂载开始之前被调用，相关的render函数首次被调用。实例已完成以下的配置：编译模板，把data里面的数据和模板生成html。注意此时还没有挂载html到页面上。</p>
+</li>
+<li><p><code>mounted</code>（载入后） 在el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用。实例已完成以下的配置：用上面编译好的html内容替换el属性指向的DOM对象。完成模板中的html渲染到html页面中。此过程中进行ajax交互。</p>
+</li>
+<li><p><code>beforeUpdate</code>（更新前） 在数据更新之前调用，发生在虚拟DOM重新渲染和打补丁之前。可以在该钩子中进一步地更改状态，不会触发附加的重渲染过程。</p>
+</li>
+<li><p><code>updated</code>（更新后） 在由于数据更改导致的虚拟DOM重新渲染和打补丁之后调用。调用时，组件DOM已经更新，所以可以执行依赖于DOM的操作。然而在大多数情况下，应该避免在此期间更改状态，因为这可能会导致更新无限循环。该钩子在服务器端渲染期间不被调用。</p>
+</li>
+<li><p><code>beforeDestroy</code>（销毁前） 在实例销毁之前调用。实例仍然完全可用。</p>
+</li>
+<li><p><code>destroyed</code>（销毁后） 在实例销毁之后调用。调用后，所有的事件监听器会被移除，所有的子实例也会被销毁。该钩子在服务器端渲染期间不被调用。</p>
+<hr>
+</li>
+</ul>
+<h3 id="Vue中的样式绑定"><a href="#Vue中的样式绑定" class="headerlink" title="Vue中的样式绑定"></a>Vue中的样式绑定</h3><h4 id="1、class的对象绑定"><a href="#1、class的对象绑定" class="headerlink" title="1、class的对象绑定"></a>1、class的对象绑定</h4><pre class=" language-css"><code class="language-css"> <span class="token selector">&lt;style>
+        <span class="token class">.activated</span></span><span class="token punctuation">{</span>
+            <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+ &lt;/style></code></pre>
+<pre class=" language-vue"><code class="language-vue">
+<div id='app'>
+        <div @click="handleDivClick" :class="{activated:isActivated}">
+            Hello World
+        </div>
+</div>
+</code></pre>
+<pre class=" language-vue"><code class="language-vue">
+<script>
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                isActivated:false
+            },
+            methods:{
+                handleDivClick:function(){
+                    this.isActivated=!this.isActivated;
+                }
+            }
+        });
+</script>
+</code></pre>
+<h4 id="2、class的数组绑定"><a href="#2、class的数组绑定" class="headerlink" title="2、class的数组绑定"></a>2、class的数组绑定</h4><pre class=" language-vue"><code class="language-vue"><style>
+        .activated {
+            color: red;
+        }
+        .activated-one{
+            font-size: 25px;
+        }
+</style></code></pre>
+<pre class=" language-vue"><code class="language-vue">
+<div id='app'>
+        <div @click="handleDivClick" :class="[activated,activatedOne]">
+            Hello World
+        </div>
+</div>
+</code></pre>
+<pre class=" language-vue"><code class="language-vue"><script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                activated: "",
+                activatedOne:"activated-one"
+            },
+            methods: {
+                handleDivClick: function () {
+                    this.activated = this.activated === "activated" ? "" : "activated";
+                }
+            }
+        });
+</script></code></pre>
+<h4 id="3、style对象绑定"><a href="#3、style对象绑定" class="headerlink" title="3、style对象绑定"></a>3、style对象绑定</h4><pre class=" language-vue"><code class="language-vue">
+<div id='app'>
+        <div :style="styleObj" @click="handleDivClick">
+            Hello World
+        </div>
+</div>
+</code></pre>
+<pre class=" language-vue"><code class="language-vue"> <script>
+        var vm = new Vue({
+            el: '#app',
+            data: { 
+                styleObj:{
+                    color:"black"
+                }
+            },
+            methods: {
+                handleDivClick:function(){
+                    this.styleObj.color=this.styleObj.color==="black"?"red":"black";
+                }
+            }
+        });
+</script></code></pre>
+<h4 id="4、style数组绑定"><a href="#4、style数组绑定" class="headerlink" title="4、style数组绑定"></a>4、style数组绑定</h4><pre class=" language-vue"><code class="language-vue">
+<div id='app'>
+        <!-- <div @click="handleDivClick" :class="[activated,activatedOne]">
+            Hello World
+        </div> -->
+        <div :style="[styleObj,{fontSize:'25px'}]" @click="handleDivClick">
+            Hello World
+        </div>
+ </div>
+</code></pre>
+<pre class=" language-vue"><code class="language-vue"><script>
+        var vm = new Vue({
+            el: '#app',
+            data: { 
+                styleObj:{
+                    color:"black"
+                }
+            },
+            methods: {
+                handleDivClick:function(){
+                    this.styleObj.color=this.styleObj.color==="black"?"red":"black";
+                }
+            }
+        });
+</script></code></pre>
+<hr>
+<h3 id="深入理解Vue组件"><a href="#深入理解Vue组件" class="headerlink" title="深入理解Vue组件"></a>深入理解Vue组件</h3><h4 id="组件细节"><a href="#组件细节" class="headerlink" title="组件细节"></a>组件细节</h4><h5 id="1、tbody、ul、select下只能存放特定的标签"><a href="#1、tbody、ul、select下只能存放特定的标签" class="headerlink" title="1、tbody、ul、select下只能存放特定的标签"></a>1、tbody、ul、select下只能存放特定的标签</h5><pre class=" language-vue"><code class="language-vue"><body>
+    <div id='app'>
+        <table>
+            <tbody>
+                <row></row>
+                <row></row>
+                <row></row>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        Vue.component('row',{
+            template:'<tr><td>this is row</td></tr>'
+        })
+
+        var vm=new Vue({
+            el:'#app',
+            data:{
+
+            },
+            methods:{
+
+            }
+        });
+    </script>
+</body></code></pre>
+<p>上述代码出现问题，tr出现在了在<code>&lt;table&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;</code>外,因为<code>&lt;tbody&gt;</code>里只能放<code>tr</code></p>
+<p><img src="C:%5CUsers%5C10592%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1562068713356.png" alt="1562068713356"></p>
+<p>改：</p>
+<pre class=" language-vue"><code class="language-vue"> <div id='app'>
+        <table>
+            <tbody>
+                <tr is="row"></tr>
+                <tr is="row"></tr>
+                <tr is="row"></tr>
+            </tbody>
+        </table>
+    </div></code></pre>
+<h5 id="2、子组件data为function"><a href="#2、子组件data为function" class="headerlink" title="2、子组件data为function"></a>2、子组件data为function</h5><p>因为根组件一样只会被调用一次，子组件会被多次调用，而子组件每个需要自己的数据，所以不能是一个对象，必须是一个方法返回一个对象</p>
+<pre class=" language-vue"><code class="language-vue"> Vue.component('row',{
+            data:function(){
+                return {
+                    content:'this is content'
+                }
+            },
+            template:'<tr><td>this is row</td></tr>'
+        })</code></pre>
+<h5 id="3、vue-操作DOM方式"><a href="#3、vue-操作DOM方式" class="headerlink" title="3、vue 操作DOM方式"></a>3、vue 操作DOM方式</h5><p>vue不推荐操作DOM但有时候不得不去操作（复杂动画）</p>
+<h6 id="标签中"><a href="#标签中" class="headerlink" title="标签中"></a>标签中</h6><p>使用this.$refs.hello获得DOM</p>
+<pre class=" language-vue"><code class="language-vue"><body>
+    <div id='app'>
+        <div ref='hello' @click="handleClick">
+            Hello World
+        </div>
+    </div>
+
+    <script>
+        var vm=new Vue({
+            el:'#app',
+            data:{},
+            methods:{
+                handleClick:function(){
+                    console.log(this.$refs.hello.innerHTML);
+                }
+            }
+        });
+    </script>
+</body></code></pre>
+<h6 id="组件中"><a href="#组件中" class="headerlink" title="组件中"></a>组件中</h6><p>使用this.$refs.hello获得组件的引用</p>
+<pre class=" language-vue"><code class="language-vue"><body>
+    <div id='app'>
+        <!-- <div ref='hello' @click="handleClick">
+            Hello World
+        </div> -->
+        <counter @change="handleChange" ref="one"></counter>
+        <counter @change="handleChange" ref="two"></counter>
+        <div>{{total}}</div>
+    </div>
+
+    <script>
+        Vue.component('counter',{
+            data:function(){
+                return{
+                    number:0
+                }
+            },
+            methods:{
+                handleClick:function(){
+                    this.number ++;
+                    this.$emit("change")
+                }
+            },
+            template:'<div @click="handleClick">{{number}}</div>'
+        })
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                total:0
+            },
+            methods:{
+                // handleClick:function(){
+                //     console.log(this.$refs.hello.innerHTML);
+                // }
+                    handleChange:function(){
+                        this.total=this.$refs.one.number+this.$refs.two.number
+                    }
+            }
+        });
+    </script>
+</body></code></pre>
+<h3 id="父子组件间的传值"><a href="#父子组件间的传值" class="headerlink" title="父子组件间的传值"></a>父子组件间的传值</h3><p>注意单向数据流，不推荐改变父组件传递过来的数据</p>
+<h4 id="1、父组件向子组件传值"><a href="#1、父组件向子组件传值" class="headerlink" title="1、父组件向子组件传值"></a>1、父组件向子组件传值</h4><p>在父组件中使用属性定义需要传的值，子组件用props接收</p>
+<p><code>:count=&quot;0&quot;</code>传递的是一个数字（js表达式），若为<code>count=&quot;0&quot;</code>传递的是字符</p>
+<h4 id="2、子组件向父组件传值"><a href="#2、子组件向父组件传值" class="headerlink" title="2、子组件向父组件传值"></a>2、子组件向父组件传值</h4><p>子组件通过事件触发的形式向父组件传值</p>
+<p>示例：</p>
+<pre class=" language-vue"><code class="language-vue"><div id='app'>
+        <counter :count="2" @inc="handleIncrease"></counter>
+        <counter :count="3" @inc="handleIncrease"></counter>
+        <div>{{total}}</div>
+    </div>
+
+    <script>
+        var counter={
+            props:[
+                'count'
+            ],
+            data:function () {  
+                return{
+                    number:this.count
+                }
+            },
+            template:"<div @click='handleClick'>{{number}}</div>",
+            methods:{
+                handleClick:function(){
+                    this.number=this.number+2;
+                    this.$emit("inc",2)
+                }
+            }
+        }
+
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                total:5
+            },
+            methods:{
+                handleIncrease:function(step){
+                    this.total+=step;
+                }
+            },
+            components:{
+                counter:counter
+            }
+        });
+    </script></code></pre>
+<h3 id="组件参数校验"><a href="#组件参数校验" class="headerlink" title="组件参数校验"></a>组件参数校验</h3><pre class=" language-vue"><code class="language-vue">props: {
+                // content:[Number,String]
+                content: {
+                    type: [Number, String],
+                    required: false, //是否必传
+                    default: "default value",
+                    validator:function(value){
+                        return(value.length>5)
+                    }
+                }
+            }</code></pre>
+<h3 id="组件绑定原生事件"><a href="#组件绑定原生事件" class="headerlink" title="组件绑定原生事件"></a>组件绑定原生事件</h3><h4 id="1、子组件直接绑定"><a href="#1、子组件直接绑定" class="headerlink" title="1、子组件直接绑定"></a>1、子组件直接绑定</h4><pre class=" language-vue"><code class="language-vue"> Vue.component('child', {
+            template: "<div @click='handleChildClick'>Child</div>",
+            props: {},
+            methods:{
+                handleChildClick:function(){
+                    alert('child click')
+                }
+            }
+        })</code></pre>
+<h4 id="2、给click加上-native"><a href="#2、给click加上-native" class="headerlink" title="2、给click加上.native"></a>2、给<code>click</code>加上<code>.native</code></h4><pre class=" language-vue"><code class="language-vue"><body>
+    <div id='app'>
+        <child @click.native="handleClick"></child>
+    </div>
+    <script>
+        Vue.component('child', {
+            template: "<div>Child</div>",
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                handleClick:function(){
+                    alert('click')
+                }
+            }
+        });
+    </script>
+</body></code></pre>
+<h3 id="非父子组件间的传值"><a href="#非父子组件间的传值" class="headerlink" title="非父子组件间的传值"></a>非父子组件间的传值</h3><p>使用 <strong>Bus/总线/发布订阅模式</strong> 实现</p>
+<pre class=" language-vue"><code class="language-vue"><script>
+        Vue.prototype.bus=new Vue()//让以后创建的每个Vue示例都有一个共享的属性bus，且bus是你一个Vue实例
+        Vue.component('child', {
+            template: "<div @click='handleClick'>{{selfContent}}</div>",
+            data:function(){
+                return {
+                    selfContent:this.content
+                }
+            },
+            props:{
+                content:String
+            },
+            methods:{
+                handleClick:function(){
+                    this.bus.$emit('change',this.selfContent)//bus是个Vue实例所以有$emit()方法
+                }
+            },
+            mounted:function () {
+                var this_=this
+                this.bus.$on('change',function (msg) {//$on监听bus触发的事件
+                    this_.selfContent=msg
+                  })
+              }
+        })
+
+        var vm = new Vue({
+            el: '#app',
+        });
+    </script></code></pre>
+<h3 id="Vue中的插槽"><a href="#Vue中的插槽" class="headerlink" title="Vue中的插槽"></a>Vue中的插槽</h3><p>原来：太low</p>
+<pre class=" language-vue"><code class="language-vue"><div id='app'>
+        <child content="<p>Gu</p>"></child>
+    </div>
+
+    <script>
+        Vue.component('child',{
+            props:['content'],
+            template:'<div><p>hello</p><div v-html="this.content"></div></div>'
+        })
+
+        var vm=new Vue({
+            el:'#app',
+            data:{},
+        });
+    </script></code></pre>
+<h4 id="1、普通插槽、具名插槽"><a href="#1、普通插槽、具名插槽" class="headerlink" title="1、普通插槽、具名插槽"></a>1、普通插槽、具名插槽</h4><pre class=" language-vue"><code class="language-vue"><div id='app'>
+        <child>
+            <!-- <p>Gu</p> -->
+            <div class="header" slot="header">header</div>
+            <div class="footer" slot="footer">footer</div>
+        </child>
+    </div>
+
+    <script>
+        Vue.component('child',{
+            props:['content'],
+            template:'<div><slot name="header">默认内容</slot><p>hello</p><slot name=footer>默认内容</slot></div>'
+        })
+
+        var vm=new Vue({
+            el:'#app',
+            data:{},
+        });
+    </script></code></pre>
+<h4 id="2、作用域插槽"><a href="#2、作用域插槽" class="headerlink" title="2、作用域插槽"></a>2、作用域插槽</h4><p>原来：</p>
+<pre class=" language-vue"><code class="language-vue"><div id='app'>
+        <child></child>
+    </div>
+
+    <script>
+        Vue.component('child',{
+            data:function(){
+                return{
+                    list:[1,2,3,4]
+                }
+            },
+            template:'<div><ul><li v-for="item of list">{{item}}</li></ul></div>'
+        })
+
+        var vm=new Vue({
+            el:'#app',
+            data:{
+
+            },
+        });
+    </script></code></pre>
+<p>但我们渲染什么需要外部告诉我们而不是<code>child</code>子组件控制</p>
+<p>作用域插槽应该由<code>template</code>包裹 <code>slot-scope</code>传过来的接收数据</p>
+<pre class=" language-vue"><code class="language-vue"><div id='app'>
+        <child>
+            <template slot-scope="props">
+                <li>{{props.item}}---hello</li>
+            </template>
+        </child>
+    </div>
+
+    <script>
+        Vue.component('child',{
+            data:function(){
+                return{
+                    list:[1,2,3,4]
+                }
+            },
+            template:'<div><ul><slot v-for="item of list" :item=item></slot></ul></div>'//传入item数据
+        })
+
+        var vm=new Vue({
+            el:'#app',
+            data:{
+
+            },
+        });
+    </script></code></pre>
+<h3 id="动态组件与v-once"><a href="#动态组件与v-once" class="headerlink" title="动态组件与v-once"></a>动态组件与v-once</h3><p>在组件里加上<code>v-once</code>那么组件第一次加载时会被放到内存里，下次切换时会这从内存中取出，提高性能</p>
+<pre class=" language-vue"><code class="language-vue">  <div id='app'>
+        <component :is="type"></component>
+        <!-- <child-one v-if="type==='child-one'"></child-one>
+        <child-two v-if="type==='child-two'"></child-two> -->
+        <button @click='handleBtnClick'>change</button>
+    </div>
+
+    <script>
+        Vue.component('child-one', {
+            template: '<div v-once>child-one</div>'
+        })
+        Vue.component('child-two', {
+            template: '<div v-once>child-two</div>'
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                type:"child-one"
+            },
+            methods: {
+                handleBtnClick:function () {
+                    this.type=this.type==='child-one' ? "child-two" : "child-one";
+                  }
+            }
+        });
+    </script></code></pre>
+<h3 id="Vue中的动画"><a href="#Vue中的动画" class="headerlink" title="Vue中的动画"></a>Vue中的动画</h3><h4 id="Vue中css动画的原理（过度动画）"><a href="#Vue中css动画的原理（过度动画）" class="headerlink" title="Vue中css动画的原理（过度动画）"></a>Vue中css动画的原理（过度动画）</h4><pre class=" language-vue"><code class="language-vue"><transition name="fade">
+            <div v-if="show">hello world</div>
+        </transition></code></pre>
+<p>当一个元素被<code>transition</code>包裹以后，vue会自动分析元素的css样式然后构建一个动画流程</p>
+<p>在进入/离开的过渡中，会有 6 个 class 切换。</p>
+<ol>
+<li><code>v-enter</code>：定义进入过渡的开始状态。在元素被插入之前生效，在元素被插入之后的下一帧移除。</li>
+<li><code>v-enter-active</code>：定义进入过渡生效时的状态。在整个进入过渡的阶段中应用，在元素被插入之前生效，在过渡/动画完成之后移除。这个类可以被用来定义进入过渡的过程时间，延迟和曲线函数。</li>
+<li><code>v-enter-to</code>: <strong>2.1.8版及以上</strong> 定义进入过渡的结束状态。在元素被插入之后下一帧生效 (与此同时 <code>v-enter</code> 被移除)，在过渡/动画完成之后移除。</li>
+<li><code>v-leave</code>: 定义离开过渡的开始状态。在离开过渡被触发时立刻生效，下一帧被移除。</li>
+<li><code>v-leave-active</code>：定义离开过渡生效时的状态。在整个离开过渡的阶段中应用，在离开过渡被触发时立刻生效，在过渡/动画完成之后移除。这个类可以被用来定义离开过渡的过程时间，延迟和曲线函数。</li>
+<li><code>v-leave-to</code>: <strong>2.1.8版及以上</strong> 定义离开过渡的结束状态。在离开过渡被触发之后下一帧生效 (与此同时 <code>v-leave</code> 被删除)，在过渡/动画完成之后移除。</li>
+</ol>
+<p><img src="https://cn.vuejs.org/images/transition.png" alt="Transition Diagram"></p>
+<pre class=" language-css"><code class="language-css"><span class="token selector">&lt;style>
+        <span class="token class">.fade-enter</span>,
+        <span class="token class">.fade-leave-to</span></span><span class="token punctuation">{</span>
+            <span class="token property">opacity</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token selector"><span class="token class">.fade-leave-active</span>,
+        <span class="token class">.fade-enter-active</span></span><span class="token punctuation">{</span>
+            <span class="token property">transition</span><span class="token punctuation">:</span> opacity <span class="token number">4</span>s<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    &lt;/style></code></pre>
+<pre class=" language-vue"><code class="language-vue"><div id='app'>
+        <transition name="fade">
+            <div v-if="show">hello world</div>
+        </transition>
+        <button @click="handleBtnClick">Button</button>
+    </div>
+
+    <script>
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                show:true
+            },
+            methods:{
+                handleBtnClick:function(){
+                    this.show=!this.show
+                }
+            }
+        });
+    </script></code></pre>
+<h4 id="使用animate"><a href="#使用animate" class="headerlink" title="使用animate"></a>使用animate</h4><h5 id="1、自己写："><a href="#1、自己写：" class="headerlink" title="1、自己写："></a>1、自己写：</h5><pre class=" language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@keyframes</span> bounce-in</span> <span class="token punctuation">{</span>
+            <span class="token selector">0% </span><span class="token punctuation">{</span>
+                <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">scale</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+            <span class="token selector">50% </span><span class="token punctuation">{</span>
+                <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">scale</span><span class="token punctuation">(</span><span class="token number">1.5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+            <span class="token selector">100% </span><span class="token punctuation">{</span>
+                <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">scale</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token selector"><span class="token class">.enter</span> </span><span class="token punctuation">{</span>
+            <span class="token property">transform-origin</span><span class="token punctuation">:</span> left center<span class="token punctuation">;</span>
+            <span class="token property">animation</span><span class="token punctuation">:</span> bounce-in <span class="token number">1</span>s<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token selector"><span class="token class">.leave</span> </span><span class="token punctuation">{</span>
+            <span class="token property">transform-origin</span><span class="token punctuation">:</span> left center<span class="token punctuation">;</span>
+            <span class="token property">animation</span><span class="token punctuation">:</span> bounce-in <span class="token number">1</span>s reverse<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span></code></pre>
+<pre class=" language-vue"><code class="language-vue"><div id='app'>
+        <transition enter-active-class="enter" leave-active-class="leave">
+            <div v-if="show">hello world</div>
+        </transition>
+        <button @click="handleBtnClick">Button</button>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                show: true
+            },
+            methods: {
+                handleBtnClick: function () {
+                    this.show = !this.show
+                }
+            }
+        });
+    </script></code></pre>
+<h5 id="2、使用animate-css库"><a href="#2、使用animate-css库" class="headerlink" title="2、使用animate.css库"></a>2、使用animate.css库</h5><pre class=" language-html"><code class="language-html"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>../../lib/animate/animate.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+<pre class=" language-vue"><code class="language-vue"> <div id='app'>
+        <!-- <transition enter-active-class="enter" leave-active-class="leave"> -->
+        <transition enter-active-class="animated swing" leave-active-class="animated shake">
+            <div v-if="show">hello world</div>
+        </transition>
+        <button @click="handleBtnClick">Button</button>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                show: true
+            },
+            methods: {
+                handleBtnClick: function () {
+                    this.show = !this.show
+                }
+            }
+        });
+    </script></code></pre>
+<h3 id="同时使用过度和动画"><a href="#同时使用过度和动画" class="headerlink" title="同时使用过度和动画"></a>同时使用过度和动画</h3><pre class=" language-css"><code class="language-css"> <span class="token selector"><span class="token class">.fade-enter</span>,
+        <span class="token class">.fade-leave-to</span></span><span class="token punctuation">{</span>
+            <span class="token property">opacity</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token selector"><span class="token class">.fade-enter-active</span>,
+        <span class="token class">.fade-leave-active</span></span><span class="token punctuation">{</span>
+            <span class="token property">transition</span><span class="token punctuation">:</span> opacity <span class="token number">1</span>s<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span></code></pre>
+<pre class=" language-vue"><code class="language-vue"><div id='app'>
+            <!--  type="transition"选择时长为过度动画时长  :duration="{enter:5000,leave:10000}"自定义动画时长-->
+        <transition  
+                :duration="{enter:5000,leave:10000}"
+                name="fade"
+                appear
+                enter-active-class="animated swing fade-enter-active"
+                leave-active-class="animated shake fade-leave-active"
+                appear-active-class="animated swing">
+            <div v-if="show">hello world</div>
+        </transition>
+        <button @click="handleBtnClick">Button</button>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                show: true
+            },
+            methods: {
+                handleBtnClick: function () {
+                    this.show = !this.show
+                }
+            }
+        });
+    </script></code></pre>
+<h3 id="Vue中js动画与Velocity结合"><a href="#Vue中js动画与Velocity结合" class="headerlink" title="Vue中js动画与Velocity结合"></a>Vue中js动画与Velocity结合</h3><h4 id="1、自己写：-1"><a href="#1、自己写：-1" class="headerlink" title="1、自己写："></a>1、自己写：</h4><pre class=" language-vue"><code class="language-vue"><div id='app'>
+        <transition name="fade" 
+        @before-enter="handleBeforeEnter"
+        @enter="handleEnter"
+        @after-enter="handleAfterEnter">
+            <div v-if="show">hello world</div>
+        </transition>
+        <button @click="handleBtnClick">Button</button>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                show: true
+            },
+            methods: {
+                handleBtnClick: function () {
+                    this.show = !this.show
+                },
+                handleBeforeEnter:function (el) {
+                    el.style.color="red";
+                },
+                handleEnter:function(el,done){
+                    setTimeout(() => {
+                        el.style.color="green";  
+                    }, 2000);
+                    setTimeout(() => {
+                        done();
+                    }, 4000);
+                },
+                handleAfterEnter:function(el){
+                    el.style.color="#000"
+                }
+            }
+        });
+    </script></code></pre>
+<h4 id="2、使用velocity-js库"><a href="#2、使用velocity-js库" class="headerlink" title="2、使用velocity.js库"></a>2、使用velocity.js库</h4><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>../../lib/velocity/velocity.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+<pre class=" language-vue"><code class="language-vue"><div id='app'>
+        <transition name="fade" @before-enter="handleBeforeEnter" @enter="handleEnter" @after-enter="handleAfterEnter">
+            <div v-if="show">hello world</div>
+        </transition>
+        <button @click="handleBtnClick">Button</button>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                show: true
+            },
+            methods: {
+                handleBtnClick: function () {
+                    this.show = !this.show
+                },
+                handleBeforeEnter: function (el) {
+                    el.style.opacity=0;
+                },
+                handleEnter: function (el, done) {
+                    Velocity(el,{opacity:1},{duration:1000,complete:done})
+                },
+                handleAfterEnter: function (el) {
+                    console.log("动画结束")
+                }
+            }
+        });
+    </script></code></pre>
+<h3 id="多个元素的过渡动画"><a href="#多个元素的过渡动画" class="headerlink" title="多个元素的过渡动画"></a>多个元素的过渡动画</h3><pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.fade-enter</span>,
+        <span class="token class">.fade-leave-to</span> </span><span class="token punctuation">{</span>
+            <span class="token property">opacity</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token selector"><span class="token class">.fade-leave-active</span>,
+        <span class="token class">.fade-enter-active</span> </span><span class="token punctuation">{</span>
+            <span class="token property">transition</span><span class="token punctuation">:</span> opacity <span class="token number">1</span>s<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span></code></pre>
+<pre class=" language-vue"><code class="language-vue"><div id='app'>
+        <!-- mode="in-out"元素先进入在隐藏 -->
+        <transition name="fade" mode="out-in">
+            <!-- 动态组件 -->
+            <component :is="type"></component>
+            <!-- <child-one v-if="show" key="one"></child-one>
+            <child-two v-else key="two"></child-two> -->
+            <!-- <div v-if="show" key="hello">hello world</div>
+            <div v-else key="bye">bey world</div> -->
+        </transition>
+        <button @click="handleBtnClick">Button</button>
+    </div>
+
+    <script>
+        Vue.component('child-one', {
+            template: '<div v-once>child-one</div>'
+        })
+        Vue.component('child-two', {
+            template: '<div v-once>child-two</div>'
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                // show: true
+                type:"child-one"
+            },
+            methods: {
+                handleBtnClick: function () {
+                    // this.show = !this.show
+                    this.type=this.type==="child-one" ?"child-two":"child-one";
+                }
+            }
+        });
+    </script></code></pre>
+<h3 id="列表过渡动画"><a href="#列表过渡动画" class="headerlink" title="列表过渡动画"></a>列表过渡动画</h3><pre class=" language-css"><code class="language-css"><span class="token selector">&lt;style>
+        <span class="token class">.fade-enter</span>,
+        <span class="token class">.fade-leave-to</span> </span><span class="token punctuation">{</span>
+            <span class="token property">opacity</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token selector"><span class="token class">.fade-leave-active</span>,
+        <span class="token class">.fade-enter-active</span> </span><span class="token punctuation">{</span>
+            <span class="token property">transition</span><span class="token punctuation">:</span> opacity <span class="token number">1</span>s<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    &lt;/style></code></pre>
+<pre class=" language-vue"><code class="language-vue"><div id='app'>
+        <transition-group name="fade">
+            <div v-for="item of list" :key="item.id">{{item.title}}</div>
+        </transition-group>
+        <button @click="handleBtnClick">Add</button>
+    </div>
+
+    <script>
+        var count = 0;
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                list: []
+            },
+            methods: {
+                handleBtnClick: function () {
+                    this.list.push({
+                        id: count++,
+                        title: "hello world " + (count - 1)
+                    })
+                }
+            }
+        });
+    </script></code></pre>
+<h3 id="动画封装"><a href="#动画封装" class="headerlink" title="动画封装"></a>动画封装</h3><h4 id="1、css封装"><a href="#1、css封装" class="headerlink" title="1、css封装"></a>1、css封装</h4><pre><code>.v-enter,
+        .v-leave-to {
+            opacity: 0;
+        }
+
+        .v-leave-active,
+        .v-enter-active {
+            transition: opacity 2s;
+        }</code></pre><pre class=" language-vue"><code class="language-vue"><div id='app'>
+       <fade :show="show">
+            <div>Hello World</div>
+       </fade>
+        <button @click="handleBtnClick">Button</button>
+    </div>
+
+    <script>
+        Vue.component("fade",{
+            props:['show'],
+            template:'<transition><slot v-if="show"></slot></transition>'
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                show: true
+            },
+            methods: {
+                handleBtnClick: function () {
+                    this.show = !this.show
+                }
+            }
+        });
+    </script></code></pre>
+<h4 id="2、js封装"><a href="#2、js封装" class="headerlink" title="2、js封装"></a>2、js封装</h4><pre class=" language-vue"><code class="language-vue"><div id='app'>
+       <fade :show="show">
+            <div>Hello World</div>
+       </fade>
+       <fade :show="show">
+           <h1>Hello World</h1>
+       </fade>
+        <button @click="handleBtnClick">Button</button>
+    </div>
+
+    <script>
+        Vue.component("fade",{
+        props:['show'],
+        template:'<transition @before-enter="handleBeforeEnter" @enter="handleEnter"><slot v-if="show"></slot></transition>',
+        methods:{
+            handleBeforeEnter:function(el){
+                el.style.color="red";
+            },
+            handleEnter:function(el,done){
+                setTimeout(() => {
+                    el.style.color="green";
+                    done();
+                }, 2000);
+            }
+        }
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                show: true
+            },
+            methods: {
+                handleBtnClick: function () {
+                    this.show = !this.show
+                }
+            }
+        });
+    </script></code></pre>
+<hr>
+<h2 id="Vue项目开发"><a href="#Vue项目开发" class="headerlink" title="Vue项目开发"></a>Vue项目开发</h2><h3 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h3><h4 id="1、安装-node-js、git等"><a href="#1、安装-node-js、git等" class="headerlink" title="1、安装 node.js、git等"></a>1、安装 node.js、git等</h4><h4 id="2、创建仓库"><a href="#2、创建仓库" class="headerlink" title="2、创建仓库"></a>2、创建仓库</h4><h5 id="码云网站或者GitHub创建一个仓库"><a href="#码云网站或者GitHub创建一个仓库" class="headerlink" title="码云网站或者GitHub创建一个仓库"></a>码云网站或者GitHub创建一个仓库</h5><p><img src="C:%5CUsers%5C10592%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1563504594507.png" alt="1563504594507"></p>
+<h5 id="SSH公钥"><a href="#SSH公钥" class="headerlink" title="SSH公钥"></a>SSH公钥</h5><p>git bush中: 将单引号部分替换为邮箱（最好为码云注册邮箱）</p>
+<pre class=" language-markdown"><code class="language-markdown">ssh-keygen -t rsa -C "xxxxx@xxxxx.com"</code></pre>
+<p>运行下面代码：出现公钥</p>
+<pre class=" language-markdown"><code class="language-markdown">cat ~/.ssh/id_rsa.pub</code></pre>
+<p><img src="https://images.gitee.com/uploads/images/2018/0814/170141_5aa5bc98_551147.png" alt="SSHçæ"></p>
+<p>复制公钥到码云</p>
+<p><img src="C:%5CUsers%5C10592%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1563505274015.png" alt="1563505274015"></p>
+<h5 id="克隆项目："><a href="#克隆项目：" class="headerlink" title="克隆项目："></a>克隆项目：</h5><p>复制项目SSH</p>
+<p><img src="C:%5CUsers%5C10592%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1563505809591.png" alt="1563505809591"></p>
+<p>进入你想把项目要放入文件目录，打开git bush，运行<code>git clone git@xxxx.com:xxxx.git</code> (git clone加上复制的SSH) ，即目录位置就多出来了一个travel-test（码云仓库名）文件夹</p>
+<p><img src="C:%5CUsers%5C10592%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1563505932717.png" alt="1563505932717"></p>
+<h4 id="3、初始化本地仓库"><a href="#3、初始化本地仓库" class="headerlink" title="3、初始化本地仓库"></a>3、初始化本地仓库</h4><p>运行 <code>git install --global vue-cli</code> 安装</p>
+<p>打开项目所在目录(<strong>注意一定要在项目所在文件夹而不是项目文件夹，在travel-test的外层目录不是travel目录下</strong>)</p>
+<p>一下windows环境最好在cmd运行</p>
+<p>运行 <code>vue init webpack travel-test</code>  travel-test为项目文件名</p>
+<p>根据提示(可在git bush或者cmd)</p>
+<p><code>cd travel</code> ，<code>npm run dev</code>或者<code>npm run start</code></p>
+<p>项目已在8080端口跑起来</p>
+<h4 id="4、本地和线上项目同步"><a href="#4、本地和线上项目同步" class="headerlink" title="4、本地和线上项目同步"></a>4、本地和线上项目同步</h4><p>查看项目发现本地项目比码云线上项目多出许多文件夹，同步线上线下：</p>
+<p>关掉服务器，确保git bush在项目目录下（travel-test下）</p>
+<p>1、运行 <code>git status</code> 查看状态</p>
+<p>2、运行 <code>git add .</code> 将所有文件增加到本地缓冲区</p>
+<p>3、运行 <code>git commit -m &#39;project init&#39;</code> 提交项目</p>
+<p>4、运行 <code>git push</code> 将提交代码推到线上仓库</p>
+<h3 id="开发开始"><a href="#开发开始" class="headerlink" title="开发开始"></a>开发开始</h3><h4 id="文件引入"><a href="#文件引入" class="headerlink" title="文件引入"></a>文件引入</h4><p>项目index.hteml下</p>
+<pre class=" language-vue"><code class="language-vue"><meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"></code></pre>
+<p>在src下新建assets目录，再在其目录下新建styles目录，将reset.css和normalize.css放入styles文件夹下，打开build目录下的webpack.base.conf.js里，<strong>配置style目录简写方式使（src/assets/styles）可简写为styles目录</strong></p>
+<p>加入<code>&#39;styles&#39;: resolve(&#39;src/assets/styles&#39;)</code></p>
+<pre class=" language-vue"><code class="language-vue">resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': resolve('src'),
+      'styles': resolve('src/assets/styles'),
+      'common': resolve('src/common'),
+    }
+  },</code></pre>
+<p>入口文件mian.js导入<strong>reset.css</strong>或者<strong>normalize.css</strong>,重置浏览器默认样式</p>
+<pre class=" language-vue"><code class="language-vue">import 'styles/reset.css'</code></pre>
+<p>入口文件mian.js导入<strong>border.css</strong>解决移动端1px边框问题</p>
+<pre class=" language-vue"><code class="language-vue">import 'styles/border.css'</code></pre>
+<p>安装<strong>fastclick</strong> ,解决在移动端在某些设备和浏览器上click事件会延迟300ms执行，体验不太好</p>
+<pre class=" language-vue"><code class="language-vue">npm install fastclick --save</code></pre>
+<p>入口文件mian.js导入</p>
+<pre class=" language-vue"><code class="language-vue">import fastClick from 'fastclick'
+
+fastClick.attach(document.body)</code></pre>
+<p>导入iconfont</p>
+<pre class=" language-vue"><code class="language-vue">import 'styles/iconfont.css'</code></pre>
+<p>安装stylus,stylus-loader</p>
+<pre class=" language-vue"><code class="language-vue">npm install stylus --save
+npm install stylus-loader --save</code></pre>
+<p><img src="C:%5CUsers%5C10592%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1563518328396.png" alt="1563518328396"></p>
+<h5 id="初始化完成提交项目"><a href="#初始化完成提交项目" class="headerlink" title="初始化完成提交项目"></a>初始化完成提交项目</h5><p>1、运行 <code>git status</code> 查看状态</p>
+<p>2、运行 <code>git add .</code> 将所有文件增加到本地缓冲区</p>
+<p>3、运行 <code>git commit -m &#39;project init&#39;</code> 提交项目</p>
+<p>4、运行 <code>git push</code> 将提交代码推送到线上仓库</p>
+<h3 id="开发开始-1"><a href="#开发开始-1" class="headerlink" title="开发开始"></a>开发开始</h3><p><strong>参考app：</strong></p>
+<p><a href="http://piao.qunar.com/touch/" target="_blank" rel="noopener">http://piao.qunar.com/touch/</a></p>
+<p><strong>项目码云：</strong></p>
+<p><a href="https://gitee.com/GueYue/events" target="_blank" rel="noopener">https://gitee.com/GueYue/events</a></p>
+<h4 id="home页面编写"><a href="#home页面编写" class="headerlink" title="home页面编写"></a>home页面编写</h4><h5 id="1、header部分"><a href="#1、header部分" class="headerlink" title="1、header部分"></a>1、header部分</h5><h6 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h6><p>home页面路由配置</p>
+<h4 id><a href="#" class="headerlink" title></a><img src="C:%5CUsers%5C10592%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1563508403079.png" alt="1563508403079"></h4><p>src下新建pages文件夹，新建home文件夹，home文件夹下，新建Home.vue,并写下如下代码</p>
+<pre class=" language-vue"><code class="language-vue"><template>
+  <div>
+    Home
+  </div>
+</template>
+<script>
+export default {
+  name: 'Home'
+</script>
+
+<style>
+</style></code></pre>
+<p>router下的index.js中</p>
+<p>导入模板</p>
+<pre class=" language-vue"><code class="language-vue">import Home from '@/pages/home/Home'</code></pre>
+<pre class=" language-vue"><code class="language-vue">routes: [
+    {
+      path: '/',
+      name: 'Home',
+      component: Home
+    }]</code></pre>
+<h6 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h6><p><strong>第一个功能的开发可以就在master分支开发，不用修改git分支</strong></p>
+<p>在home文件夹下新建components文件夹,components下新建Header.vue 文件，写下</p>
+<pre class=" language-vue"><code class="language-vue"><template>
+  <div class="header">
+    <div class="header-left">
+      <div class="iconfont back-icon">&#xe624;</div>
+    </div>
+    <div class="header-input">
+      <span class="iconfont">&#xe632;</span>
+      输入城市/景点/游玩主题
+    </div>
+    <router-link to='/city'>
+      <div class="header-right">
+        {{this.city}}
+        <span class="iconfont arrow">&#xe6aa;</span>
+      </div>
+    </router-link>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'HomeHeader',
+}
+</script>
+
+<style lang="stylus" scoped>
+  @import '~styles/varibles.styl'
+  .header
+    line-height: $headerHeight
+    display: flex
+    background-color: $bgColor
+    /* 具体样式略 */
+    ......
+</style>
+</code></pre>
+<p>修改Home.vue使用Header组件</p>
+<pre class=" language-vue"><code class="language-vue"><template>
+  <div>
+    <home-header></home-header>
+  </div>
+</template>
+<script>
+import HomeHeader from './components/Header'
+export default {
+  name: 'Home',
+  components: {
+    HomeHeader
+  }
+</script>
+
+<style>
+</style>
+</code></pre>
+<h5 id="2、轮播图"><a href="#2、轮播图" class="headerlink" title="2、轮播图"></a>2、轮播图</h5><h6 id="开始-1"><a href="#开始-1" class="headerlink" title="开始"></a>开始</h6><p>在码云上创建分支home-swiper</p>
+<p>项目git bush里运行如下代码</p>
+<p>1、<code>git pull</code>  线上分支同步到线下</p>
+<p>2、<code>git checkout home-swiper</code> 切换到home-siwper分支开发</p>
+<p>3、<code>npm run start</code> 或者 <code>npm run dev</code> 启动项目</p>
+<p>安装vue-awesome-swiper 2.6.7版本</p>
+<pre class=" language-markdown"><code class="language-markdown">vue-awesome-swiper@2.6.7 --save</code></pre>
+<p>mian.js导入</p>
+<pre class=" language-vue"><code class="language-vue">import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
+
+Vue.use(VueAwesomeSwiper)</code></pre>
+<h6 id="内容-1"><a href="#内容-1" class="headerlink" title="内容"></a>内容</h6><p>home目录下的components下新建Swier.vue    <strong>多余代码并为删除</strong></p>
+<pre class=" language-vue"><code class="language-vue"><template>
+  <div class="swiper">
+    <swiper :options="swiperOption" v-if="showSiwper">
+      <swiper-slide v-for="item of list" :key="item.id">
+        <img class="swiper-img" :src="item.imgUrl" />
+      </swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
+    </swiper>
+  </div>
+</template>
+<script>
+export default {
+  name: 'HomeSwiper',
+  props: {
+    list: Array
+  },
+  data () {
+    return {
+      swiperOption: {
+        pagination: '.swiper-pagination',
+        loop: true
+      }
+    }
+  },
+  computed: {
+    showSiwper () {
+      return this.list.length
+    }
+  }
+}
+</script>
+<style lang="stylus" scoped>
+.swiper >>> .swiper-pagination-bullet-active
+  background: #fff
+.swiper
+  overflow: hidden
+  width: 100%
+  height: 0
+  padding-bottom: 26.66%
+  .swiper-img
+    width: 100%
+</style>
+</code></pre>
+<p>Home.vue</p>
+<pre class=" language-vue"><code class="language-vue"><template>
+  <div>
+    <home-header></home-header>
+    <home-swiper :list="swiperList"></home-swiper>
+    <home-icons :list="iconList"></home-icons>
+    <home-recommend :list="recommendList"></home-recommend>
+    <home-weekend :list="weekendList"></home-weekend>
+  </div>
+</template>
+<script>
+import HomeHeader from './components/Header'
+import HomeSwiper from './components/Swiper'
+import HomeIcons from './components/Icons'
+import HomeRecommend from './components/Recommend'
+import HomeWeekend from './components/Weekend'
+import axios from 'axios'
+import { mapState } from 'vuex'
+
+export default {
+  name: 'Home',
+  components: {
+    HomeHeader,
+    HomeSwiper,
+    HomeIcons,
+    HomeRecommend,
+    HomeWeekend
+  },
+  data () {
+    return {
+      swiperList: [],
+      iconList: [],
+      recommendList: [],
+      weekendList: [],
+      lastCity: ''
+    }
+  },
+  computed: {
+    ...mapState(['city'])
+  },
+  methods: {
+    getHomeInfo () {
+      axios.get('api/index.json?city=' + this.city)
+        .then(this.getHomeInfoSucc)
+    },
+    getHomeInfoSucc (res) {
+      res = res.data
+      if (res.ret && res.data) {
+        const data = res.data
+        this.swiperList = data.swiperList
+        this.iconList = data.iconList
+        this.recommendList = data.recommendList
+        this.weekendList = data.weekendList
+      }
+    }
+  },
+  mounted () {
+    this.lastCity = this.city
+    this.getHomeInfo()
+  },
+  activated () {
+    if (this.lastCity !== this.city) {
+      this.lastCity = this.city
+      this.getHomeInfo()
+    }
+  }
+}
+</script>
+
+<style>
+</style>
+</code></pre>
+<h6 id="结束（提交和合并分支）"><a href="#结束（提交和合并分支）" class="headerlink" title="结束（提交和合并分支）"></a>结束（提交和合并分支）</h6><p><strong>提交代码</strong></p>
+<p>1、运行 <code>git status</code> 查看状态</p>
+<p>2、运行 <code>git add .</code> 将所有文件增加到本地缓冲区</p>
+<p>3、运行 <code>git commit -m &#39;XXXXX&#39;</code> 提交项目</p>
+<p>4、运行 <code>git push</code> 将提交代码推送到线上仓库</p>
+<p><strong>合并分支</strong></p>
+<p>1、运行 <code>git checkout master</code> 切换到主分支</p>
+<p>2、运行 <code>git merge home-swiper</code> 合并wiper分支到主分支</p>
+<p>3、运行 <code>git push</code> 将提交代码推送到线上仓库</p>
+<h3 id="Ajax传值"><a href="#Ajax传值" class="headerlink" title="Ajax传值"></a>Ajax传值</h3><h4 id="安装axios"><a href="#安装axios" class="headerlink" title="安装axios"></a>安装axios</h4><pre class=" language-node"><code class="language-node">npm install axios --save</code></pre>
+<h4 id="更改你配置项"><a href="#更改你配置项" class="headerlink" title="更改你配置项"></a>更改你配置项</h4><p>在config目录下的index.js找到dev（开发环境）配置<code>proxyTbale</code></p>
+<p>当我们请求api目录的时候把请求转发到<code>http://localhost:8080</code> 上，并把以api开头的请求，则把路径替换到本地的/static/mock文件夹下</p>
+<pre class=" language-vue"><code class="language-vue">module.exports = {
+  dev: {
+
+    // Paths
+    assetsSubDirectory: 'static',
+    assetsPublicPath: '/',
+    proxyTable: {
+      '/api': {
+        target: 'http://localhost:8080',
+        pathRewrite: {
+          '^/api':'/static/mock'
+        }
+      }
+    },</code></pre>
+<h4 id="请求数据"><a href="#请求数据" class="headerlink" title="请求数据"></a>请求数据</h4><p>接收到数据后通过组件传值把数据分发到各个模块</p>
+<p><strong>请求的是static/mock/index.json</strong></p>
+<pre class=" language-vue"><code class="language-vue"><template>
+  <div>
+    <home-header></home-header>
+    <home-swiper :list="swiperList"></home-swiper>
+    <home-icons :list="iconList"></home-icons>
+    <home-recommend :list="recommendList"></home-recommend>
+    <home-weekend :list="weekendList"></home-weekend>
+  </div>
+</template>
+<script>
+import HomeHeader from './components/Header'
+import HomeSwiper from './components/Swiper'
+import HomeIcons from './components/Icons'
+import HomeRecommend from './components/Recommend'
+import HomeWeekend from './components/Weekend'
+import axios from 'axios'
+import { mapState } from 'vuex'
+
+export default {
+  name: 'Home',
+  components: {
+    HomeHeader,
+    HomeSwiper,
+    HomeIcons,
+    HomeRecommend,
+    HomeWeekend
+  },
+  data () {
+    return {
+      swiperList: [],
+      iconList: [],
+      recommendList: [],
+      weekendList: [],
+      lastCity: ''
+    }
+  },
+  computed: {
+    ...mapState(['city'])
+  },
+  methods: {
+    getHomeInfo () {
+      axios.get('api/index.json?city=' + this.city)
+        .then(this.getHomeInfoSucc)
+    },
+    getHomeInfoSucc (res) {
+      res = res.data
+      if (res.ret && res.data) {
+        const data = res.data
+        this.swiperList = data.swiperList
+        this.iconList = data.iconList
+        this.recommendList = data.recommendList
+        this.weekendList = data.weekendList
+      }
+    }
+  },
+  mounted () {
+    this.lastCity = this.city
+    this.getHomeInfo()
+  },
+  activated () {
+    if (this.lastCity !== this.city) {
+      this.lastCity = this.city
+      this.getHomeInfo()
+    }
+  }
+}
+</script>
+
+<style>
+</style>
+</code></pre>
+<h3 id="better-scroll插件的使用"><a href="#better-scroll插件的使用" class="headerlink" title="better-scroll插件的使用"></a>better-scroll插件的使用</h3><p>GitHub地址：</p>
+<p><a href="https://github.com/ustbhuangyi/better-scroll" target="_blank" rel="noopener">https://github.com/ustbhuangyi/better-scroll</a></p>
+<p>安装</p>
+<pre class=" language-markdown"><code class="language-markdown">npm install better-scroll --save</code></pre>
+<p>使用</p>
+<pre class=" language-vue"><code class="language-vue"><template>
+  <div class="list" ref="wrapper">
+    <div>
+      <div class="area">
+        <div class="title">当前城市</div>
+        <div class="button-list">
+          <div class="button-wrapper">
+            <div class="button">{{this.currentCity}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="area">
+        <div class="title">热门城市</div>
+        <div class="button-list">
+          <div class="button-wrapper" v-for="item of hot" :key="item.id" @click="handleCityClick(item.name)">
+            <div class="button">{{item.name}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="area" v-for="(item, key) of cities" :key="key" :ref="key">
+        <div class="title">{{key}}</div>
+        <div class="item-list">
+          <div class="item border-bottom" v-for="innerItem of item" :key="innerItem.id" @click="handleCityClick(innerItem.name)">{{innerItem.name}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import Bscroll from 'better-scroll'
+import { mapState, mapMutations } from 'vuex'
+export default {
+  name: 'CityList',
+  props: {
+    hot: Array,
+    cities: Object,
+    letter: String
+  },
+  mounted () {
+    this.scroll = new Bscroll(this.$refs.wrapper)
+  },
+  computed: {
+    ...mapState({
+      currentCity: 'city'
+    })
+  },
+  watch: {
+    letter () {
+      if (this.letter) {
+        const element = this.$refs[this.letter][0]
+        this.scroll.scrollToElement(element)
+      }
+    }
+  },
+  methods: {
+    handleCityClick (city) {
+      // this.$store.commit('changeCity', city)
+      this.changeCity(city)
+      this.$router.push('/')
+    },
+    ...mapMutations(['changeCity'])
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+@import '~styles/varibles.styl'
+@import '~styles/mixins.styl'
+.list
+  position: absolute
+  .title
+    title-common()
+    /* 省略css*/
+  ......
+</style>
+</code></pre>
+<h3 id="灵活的timer实现数据节流提高性能"><a href="#灵活的timer实现数据节流提高性能" class="headerlink" title="灵活的timer实现数据节流提高性能"></a>灵活的timer实现数据节流提高性能</h3><pre class=" language-vue"><code class="language-vue"><template>
+  <div>
+    <div class="search">
+      <input type="text" class="search-input" placeholder="输入城市名或拼音" v-model="keyword">
+    </div>
+    <div class="search-content" ref="search" v-show="keyword">
+      <ul>
+        <li class="search-item" v-for="item of list" :key="item.id" @click="handleCityClick(item.name)">{{item.name}}</li>
+        <li class="search-item" v-show="hasNoData">没有找到匹配数据</li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<script>
+import Bscroll from 'better-scroll'
+import { mapMutations } from 'vuex'
+export default {
+  name: 'CitySearch',
+  props: {
+    cities: Object
+  },
+  data () {
+    return {
+      keyword: '',
+      list: [],
+      timer: null
+    }
+  },
+  computed: {
+    hasNoData () {
+      return !this.list.length
+    }
+  },
+  watch: {
+    keyword () {
+      if (this.timer) {
+        clearTimeout(this.timer)
+      }
+      if (!this.keyword) {
+        this.list = []
+        return
+      }
+      this.timer = setTimeout(() => {
+        const result = []
+        for (let i in this.cities) {
+          this.cities[i].forEach((value) => {
+            if (value.spell.indexOf(this.keyword) > -1 || value.name.indexOf(this.keyword) > -1) {
+              result.push(value)
+            }
+          })
+        }
+        this.list = result
+      }, 100)
+    }
+  },
+  mounted () {
+    this.scroll = new Bscroll(this.$refs.search)
+  },
+  methods: {
+    handleCityClick (city) {
+      // this.$store.commit('changeCity', city)
+      this.changeCity(city)
+      this.$router.push('/')
+    },
+    ...mapMutations(['changeCity'])
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+  ......
+</style>
+</code></pre>
+<h3 id="Vuex实现数据渲染"><a href="#Vuex实现数据渲染" class="headerlink" title="Vuex实现数据渲染"></a>Vuex实现数据渲染</h3><p><img src="https://vuex.vuejs.org/vuex.png" alt="vuex"></p>
+<p>每一个 Vuex 应用的核心就是 store（仓库）。“store”基本上就是一个容器，它包含着你的应用中大部分的<strong>状态 (state)</strong>。Vuex 和单纯的全局对象有以下两点不同：</p>
+<ol>
+<li>Vuex 的状态存储是响应式的。当 Vue 组件从 store 中读取状态的时候，若 store 中的状态发生变化，那么相应的组件也会相应地得到高效更新。</li>
+<li>你不能直接改变 store 中的状态。改变 store 中的状态的唯一途径就是显式地<strong>提交 (commit) mutation</strong>。这样使得我们可以方便地跟踪每一个状态的变化，从而让我们能够实现一些工具帮助我们更好地了解我们的应用。</li>
+</ol>
+<h4 id="简单的使用："><a href="#简单的使用：" class="headerlink" title="简单的使用："></a>简单的使用：</h4><p>src下创建store文件夹在store文件夹下创建index.js</p>
+<p>导出的是通过Vuex创建的store仓库,并设置仓库中state里设置数据city默认值为北京</p>
+<pre class=" language-vue"><code class="language-vue">import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+export default new Vuex.Store({
+  state：{
+      city: '北京'
+  }
+})</code></pre>
+<p>main.js中</p>
+<pre class=" language-vue"><code class="language-vue">import store from './store'
+
+new Vue({
+  el: '#app',
+  router,
+  store,
+  components: { App },
+  template: '<App/>'
+})</code></pre>
+<p><img src="C:%5CUsers%5C10592%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1563543729522.png" alt="1563543729522"></p>
+<p>因为在创建根实例的时候把store传入了</p>
+<pre class=" language-vue"><code class="language-vue">{{this.$store.state.city}}</code></pre>
+<p>修改city</p>
+<pre class=" language-vue"><code class="language-vue"><div class="item border-bottom" @click="handleCityClick(innerItem.name)">{{innerItem.name}}</div></code></pre>
+<pre class=" language-vue"><code class="language-vue">methods: {
+    handleCityClick (city) {
+        this.$store.dispatch('change', city)
+    },
+  }</code></pre>
+<p>修改store下index.js</p>
+<pre class=" language-vue"><code class="language-vue">import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+export default new Vuex.Store({
+  state: {
+      city: '北京'
+  },
+  actions: {
+      changeCity (ctx,city) {
+          ctx.commit('changeCity', city)
+      }
+  },
+  mutations: {
+      changeCity (state, city){
+          state.city = city
+      } 
+  }
+})</code></pre>
+<h4 id="无异步操作简化"><a href="#无异步操作简化" class="headerlink" title="无异步操作简化"></a>无异步操作简化</h4><p>若无异步操作，则Actions并无必要，组件可以直接调用mutations</p>
+<p>即上述代码简单改为：</p>
+<pre class=" language-vue"><code class="language-vue">methods: {
+    handleCityClick (city) {
+        this.$store.dispatch('change', city)
+    },
+  }</code></pre>
+<pre class=" language-vue"><code class="language-vue">import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+export default new Vuex.Store({
+  state: {
+      city: '北京'
+  },
+  mutations: {
+      changeCity (state, city){
+          state.city = city
+      } 
+  }
+})</code></pre>
+<h4 id="增加缓存操作-类似cookie"><a href="#增加缓存操作-类似cookie" class="headerlink" title="增加缓存操作(类似cookie)"></a>增加缓存操作(类似cookie)</h4><p><strong>使用localStorage最好添加try…catch 因为用户可能会关闭本地存储或者为隐身模式可能会导致抛出异常</strong></p>
+<pre class=" language-vue"><code class="language-vue">export default new Vuex.Store({
+  state: {
+      city: localStorage || '北京'
+  },
+  mutations: {
+      changeCity (state, city){
+          state.city = city
+          localStorage.city = city
+      } 
+  }
+})</code></pre>
+<p>改：</p>
+<pre class=" language-vue"><code class="language-vue">import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+
+let defaultCity = '上海'
+try {
+  if (localStorage.city) {
+    defaultCity = localStorage.city
+  }
+} catch (e) {}
+
+export default new Vuex.Store({
+  state: {
+      city: defaultCity
+  },
+  mutations: {
+      changeCity (state, city) {
+    state.city = city
+    try {
+      localStorage.city = city
+    } catch (e) {}
+  }
+  }
+})</code></pre>
+<h4 id="拆分"><a href="#拆分" class="headerlink" title="拆分"></a>拆分</h4><p>当项目有些大时，index.js太杂乱，不易于维护，所以需要拆分</p>
+<p>在store中创建state.js文件</p>
+<pre class=" language-vue"><code class="language-vue">let defaultCity = '上海'
+try {
+  if (localStorage.city) {
+    defaultCity = localStorage.city
+  }
+} catch (e) {}
+
+export default {
+  city: defaultCity
+}
+</code></pre>
+<p>在store中创建mutations.js文件</p>
+<pre class=" language-vue"><code class="language-vue">export default {
+  changeCity (state, city) {
+    state.city = city
+    try {
+      localStorage.city = city
+    } catch (e) {}
+  }
+}</code></pre>
+<p>store中index.js修改</p>
+<pre class=" language-vue"><code class="language-vue">import Vue from 'vue'
+import Vuex from 'vuex'
+import state from './state'
+import mutations from './mutations'
+
+Vue.use(Vuex)
+
+export default new Vuex.Store({
+  state,
+  mutations
+})</code></pre>
+<h4 id="store使用代码的优化"><a href="#store使用代码的优化" class="headerlink" title="store使用代码的优化"></a>store使用代码的优化</h4><pre class=" language-vue"><code class="language-vue">import { mapState } from 'vuex'</code></pre>
+<pre class=" language-vue"><code class="language-vue">  computed: {
+    ...mapState(['city'])
+  },</code></pre>
+<hr>
+<pre class=" language-markdown"><code class="language-markdown">import { mapState, mapMutations } from 'vuex'</code></pre>
+<pre class=" language-vue"><code class="language-vue"><div class="button">{{this.currentCity}}</div></code></pre>
+<p>将Vuex中公用数据映射到这个组件的计算属性里，映射过来的名字叫做currentCity</p>
+<pre class=" language-vue"><code class="language-vue">computed: {
+    ...mapState({
+      currentCity: 'city'
+    })
+  },</code></pre>
+<p>有一个mutation叫changeCity，然后我把这个mutation映射到这个组件的一个叫做changeCity的方法里</p>
+<pre class=" language-vue"><code class="language-vue">methods: {
+    handleCityClick (city) {
+      // this.$store.commit('changeCity', city)
+      this.changeCity(city)
+      this.$router.push('/')
+    },
+    ...mapMutations(['changeCity'])
+  }</code></pre>
+<h4 id="最后代码"><a href="#最后代码" class="headerlink" title="最后代码"></a>最后代码</h4><h5 id="仓库代码"><a href="#仓库代码" class="headerlink" title="仓库代码"></a>仓库代码</h5><p>store文件夹下index.js中</p>
+<pre class=" language-vue"><code class="language-vue">import Vue from 'vue'
+import Vuex from 'vuex'
+import state from './state'
+import mutations from './mutations'
+
+Vue.use(Vuex)
+
+export default new Vuex.Store({
+  state,
+  mutations
+})</code></pre>
+<p>store文件夹下state.js中</p>
+<pre class=" language-vue"><code class="language-vue">let defaultCity = '上海'
+try {
+  if (localStorage.city) {
+    defaultCity = localStorage.city
+  }
+} catch (e) {}
+
+export default {
+  city: defaultCity
+}</code></pre>
+<p>store文件夹下mutations.js中</p>
+<pre class=" language-vue"><code class="language-vue">export default {
+  changeCity (state, city) {
+    state.city = city
+    try {
+      localStorage.city = city
+    } catch (e) {}
+  }
+}</code></pre>
+<h5 id="使用代码"><a href="#使用代码" class="headerlink" title="使用代码"></a>使用代码</h5><pre class=" language-vue"><code class="language-vue"><div class="button">{{this.currentCity}}</div></code></pre>
+<pre class=" language-vue"><code class="language-vue">computed: {
+    ...mapState({
+      currentCity: 'city'
+    })
+  },</code></pre>
+<pre class=" language-vue"><code class="language-vue">methods: {
+    handleCityClick (city) {
+      // this.$store.commit('changeCity', city)
+      this.changeCity(city)
+      this.$router.push('/')
+    },
+    ...mapMutations(['changeCity'])
+  }</code></pre>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>若用到非常复杂的应用系统，比如后台管理等、经常会有很多共用数据在Vuex中进行存储那么我们需要用到模块，详细学习到Vuex下的Module文档</p>
+<h3 id="keepalive性能优化"><a href="#keepalive性能优化" class="headerlink" title="keepalive性能优化"></a>keepalive性能优化</h3><h4 id="加keepalive"><a href="#加keepalive" class="headerlink" title="加keepalive"></a>加keepalive</h4><pre class=" language-vue"><code class="language-vue">  methods: {
+    getCityInfo () {
+      axios.get('api/city.json')
+        .then(this.handleGetCityInfoSucc)
+    },
+    handleGetCityInfoSucc (res) {
+      res = res.data
+      if (res.ret && res.data) {
+        const data = res.data
+        this.cities = data.cities
+        this.hotCities = data.hotCities
+      }
+    },
+    handleLetterChange (letter) {
+      this.letter = letter
+    }
+  },
+  mounted () {
+    this.getCityInfo()
+  }</code></pre>
+<p>由上述代码可知，当每次加载页面即这个组建时，就会发送一次请求，若频繁的打开而不更改页面，那么性能将会很低，所以我么可以在程序的入口组件里使用keepalive</p>
+<p>他的意思是当路由的内容被加载过一次之后，他就将路由的内容放到内存之中，下一次在进这个路由的时候不需要你去重新渲染这个组件，重新执行钩子函数，只需要从内存里把以前的内容拿出来就可</p>
+<pre class=" language-vue"><code class="language-vue"><keep-alive>
+      <router-view></router-view>
+</keep-alive></code></pre>
+<p><img src="C:%5CUsers%5C10592%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1563593400231.png" alt="1563593400231"></p>
+<h4 id="解决需要重新加载页面内容时的问题"><a href="#解决需要重新加载页面内容时的问题" class="headerlink" title="解决需要重新加载页面内容时的问题"></a>解决需要重新加载页面内容时的问题</h4><p>有时候我们在这个页面点击、做出其他改变影响页面内容时需要重新请求数据重新渲染内容，那么我们就需要使用到加上keepalive后组件里会多出两个个生命周期函数activated，unactivated，他在页面重新渲染的时候会执行，我们只需要在activated里判断数据是否需要重新请求，若需要则重新请求数据即可</p>
+<pre class=" language-vue"><code class="language-vue"> activated () {
+    if (this.lastCity !== this.city) {
+      this.lastCity = this.city
+      this.getHomeInfo()
+    }
+ }</code></pre>
+
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fa fa-close"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力,谢谢您！</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
+                  property="dct:title" rel="dct:type">
+                    《Vue学习文档》
+                </span> 由
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/07/20/vueBook/" property="cc:attributionName"
+               rel="cc:attributionURL">
+                GuYue
+            </a> 采用
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/07/20/Responsive/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="响应式开发">
+                        
+                        <span class="card-title">响应式开发</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            弹性网格、弹性图片、媒体查询等多项技术综合
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/前端/" class="post-category" target="_blank">
+                                    前端
+                                </a>
+                            
+                            <a href="/categories/前端/响应式开发/" class="post-category" target="_blank">
+                                    响应式开发
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Typora/" target="_blank">
+                        <span class="chip bg-color">Typora</span>
+                    </a>
+                    
+                    <a href="/tags/Markdown/" target="_blank">
+                        <span class="chip bg-color">Markdown</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/07/20/GitCommand/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="git基础命令">
+                        
+                        <span class="card-title">git基础命令</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            git基础命令
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/git/" class="post-category" target="_blank">
+                                    git
+                                </a>
+                            
+                            <a href="/categories/git/tools/" class="post-category" target="_blank">
+                                    tools
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Typora/" target="_blank">
+                        <span class="chip bg-color">Typora</span>
+                    </a>
+                    
+                    <a href="/tags/Markdown/" target="_blank">
+                        <span class="chip bg-color">Markdown</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="#" target="_blank"> GuYue </a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">9.4k</span>
+            
+
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+                    本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/guyueshuiqing/GuYueShuiQing.github.io" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:guyueshuiqing7@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
