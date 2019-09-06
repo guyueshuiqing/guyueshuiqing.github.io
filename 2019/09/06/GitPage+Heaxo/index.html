@@ -4,11 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="git基础命令, GuYue">
-    <meta name="description" content="Git基础命令1、git add . 全部添加到缓冲区 
-2、gitcommit -m &amp;#39;描述&amp;#39; 提交到本地git库
-3、git push 提交到远程GitHub仓库
-4、git checkout index-test 切换">
+    <meta name="keywords" content="GuYue">
+    <meta name="description" content="Hexo+GitPage实现个人博客环境
+[node.js]: http://nodejs.cn/download/    “ node.js”
+检验是否安装成功：
+命令：node -v显示：v10.16.0（版本可能跟我不一样） 
+命令：">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>git基础命令 | GuYue</title>
+    <title>GuYue</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -267,13 +268,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        git基础命令
+                        
                     </div>
                 </div>
             </div>
@@ -382,33 +383,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/Typora/" target="_blank">
-                                <span class="chip bg-color">Typora</span>
-                            </a>
-                        
-                            <a href="/tags/Markdown/" target="_blank">
-                                <span class="chip bg-color">Markdown</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fa fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/git/" class="post-category" target="_blank">
-                                git
-                            </a>
-                        
-                            <a href="/categories/git/tools/" class="post-category" target="_blank">
-                                tools
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -416,21 +396,21 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-07-20
+                    2019-09-06
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        140
+                        1.4k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        1 分
+                        5 分
                     </div>
                     
                 
@@ -446,18 +426,106 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Git基础命令"><a href="#Git基础命令" class="headerlink" title="Git基础命令"></a>Git基础命令</h1><p>1、<code>git add .</code> 全部添加到缓冲区 </p>
-<p>2、<code>gitcommit -m &#39;描述&#39;</code> 提交到本地git库</p>
-<p>3、<code>git push</code> 提交到远程GitHub仓库</p>
-<p>4、<code>git checkout index-test</code> 切换到master分支</p>
-<p>5、<code>git checkout .</code> 去除这次更改</p>
-<p>6、<code>git merge origin/index-swiper</code> 合并index-swiper分支到origin（主分支）分支</p>
-<p>7、<code>git pull</code>同步到本地仓库 </p>
-<p>8、<code>git status</code> 查看当前状态</p>
-<p>9、<code>git branch</code> 查看分支</p>
-<h2 id="同步到本地仓库"><a href="#同步到本地仓库" class="headerlink" title="同步到本地仓库"></a>同步到本地仓库</h2><p>7 -&gt; 4 </p>
-<h2 id="提交到远程仓库命令："><a href="#提交到远程仓库命令：" class="headerlink" title="提交到远程仓库命令："></a>提交到远程仓库命令：</h2><p>1 -&gt; 2 -&gt; 3</p>
-<h2 id="合并主分支命令"><a href="#合并主分支命令" class="headerlink" title="合并主分支命令"></a>合并主分支命令</h2><p>4 -&gt; 6 -&gt;3</p>
+                <h1 id="Hexo-GitPage实现个人博客"><a href="#Hexo-GitPage实现个人博客" class="headerlink" title="Hexo+GitPage实现个人博客"></a>Hexo+GitPage实现个人博客</h1><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li><p>[node.js]: <a href="http://nodejs.cn/download/" target="_blank" rel="noopener">http://nodejs.cn/download/</a>    “ node.js”</p>
+<p>检验是否安装成功：</p>
+<p>命令：<code>node -v</code><br>显示：<code>v10.16.0</code>（版本可能跟我不一样） </p>
+<p>命令：<code>npm -v</code></p>
+<p>显示：<code>6.9.0</code> </p>
+</li>
+<li><p>[git]: <a href="https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git" target="_blank" rel="noopener">https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git</a>    “git”</p>
+<p>左面单击鼠标右键</p>
+<p>显示：<code>git bash here</code> </p>
+</li>
+<li><p>[github账户]: <a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a>    “github”</p>
+</li>
+<li><p>[hexo]: </p>
+<p>安装：<code>npm install hexo-cli -g  #安装hexo模块</code></p>
+<p>命令：<code>hexo -v</code></p>
+<p>显示：<code>hexo-cli: 2.0.0 ........</code></p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2></li>
+</ul>
+<h3 id="新建仓库："><a href="#新建仓库：" class="headerlink" title="新建仓库："></a>新建仓库：</h3><p>登录github官网，创建一个开源项目</p>
+<ul>
+<li><p>项目名称：<strong>username.github.io</strong> 形式 （项目名创建错误的朋友，点击自己头像，进入设置，删除项目再重来吧<del>~</del>）例：<strong>guyue.github.io</strong></p>
+</li>
+<li><p>项目描述就随便了</p>
+</li>
+<li><p>公有项目</p>
+</li>
+<li><p>勾上初始化readme </p>
+</li>
+<li><p>完成GitPage创建检查：</p>
+<p>进入项目设置（不是个人设置0.0）</p>
+<p>找到GitHub Pages</p>
+<p>下面显示：</p>
+<p><strong>√ Your site is published at <a href="https://guyueshuiqing.github.io/">https://guyueshuiqing.github.io/</a></strong></p>
+<p>就成功了</p>
+</li>
+</ul>
+<h3 id="生成密钥"><a href="#生成密钥" class="headerlink" title="生成密钥"></a>生成密钥</h3><p>打开git bash（桌面右键，git bash here），输入<code>ssh-keygen -t rsa</code> , 接着回车三下，创建公私钥成功， 回车默认的是把公钥和私钥保存在默认的路径，当然你也可以选择自己的路径，把路径输入即可，但是不建议这样做，后面会出问题</p>
+<pre class=" language-node"><code class="language-node">ssh-keygen -t rsa -C "....24@gmial.com"
+ssh-add ~/.ssh/id_rsa</code></pre>
+<p>在<strong>C:\Users\10592.ssh</strong>目录下会生成id_rsa和id_rsa.pub文件（后面用到）</p>
+<h3 id="在github上添加SSH-key"><a href="#在github上添加SSH-key" class="headerlink" title="在github上添加SSH key"></a>在github上添加SSH key</h3><p>进入自己的github，点击头像，进入settings ，点击SSH and GPG keys，点击new GPG key</p>
+<p>把上面的<strong>id_rsa.pub</strong>文件里的内容复制到key，title随便填，点击Add GPG keys</p>
+<p>SSH key添加之后，就可以在本机git bash中进行测试，输入 <code>ssh -T git@github.com</code>进行测试,出现hi xxxx，说名ssh授权成功</p>
+<p>如果提示<strong>Are you sure you want to continue connecting (yes/no)?</strong>，输入yes，然后会看到：</p>
+<p><strong>Hi liuxianan! You’ve successfully authenticated, but GitHub does not provide shell access.</strong></p>
+<p>如果出现无法登陆的情况，先把之前生成的文件懂删了以后再重新生成一下ssh，（建议使用默认目录，否则这个地方会出问题）</p>
+<p>配置git的username与email（第一次使用git）</p>
+<pre><code>git config --global user.name &quot;username&quot;
+git config --global user.email &quot;....84@gmail.com&quot;</code></pre><p>查看是否配置成功，输入下面代码，显示用户名和邮箱</p>
+<pre><code>git config --global user.name
+git config --global user.email</code></pre><h3 id="创建本地项目："><a href="#创建本地项目：" class="headerlink" title="创建本地项目："></a>创建本地项目：</h3><h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><pre><code>$ hexo generate (hexo g) 生成静态文件
+$ hexo server (hexo s) 启动本地服务
+$ hexo deploy (hexo d) 提交到远程仓库
+$ hexo clean 清除本地 public 文件
+
+$ hexo new page &quot;xx&quot;(hexo n page) 创建页面 
+$ hexo new &quot;xx&quot; (hexo n &quot;&quot;) 创建文章
+$ hexo d -g 生成静态并提交到远程仓库
+$ hexo s -g 生成静态文件并启动本地预览</code></pre><h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><p>先来说几个注意事项：</p>
+<ul>
+<li><p>很多命令既可以用Windows的cmd来完成，也可以使用git bash来完成，但是部分命令会有一些问题，为避免不必要的问题，建议全部使用git bash来执行；</p>
+</li>
+<li><p>hexo有2种<code>_config.yml</code>文件，一个是根目录下的全局的<code>_config.yml</code>，一个是各个<code>theme</code>下的；</p>
+</li>
+</ul>
+<p>新建一个hexo文件夹，在文件夹中，打开git bash here输入下列命令初始化本地项目blog</p>
+<pre class=" language-node"><code class="language-node">hexo init blog    #通过hexo创建一个blog项目</code></pre>
+<p>然后输入如下命令，生成静态文件，并开启本地预览服务，打开浏览器访问 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 即可看到内容</p>
+<pre><code>hexo g 
+hexo d</code></pre><h4 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h4><p>先了解blog文件夹中各个文件的作用，打开blog文件夹，里面文件说明如下：</p>
+<pre><code>node_modules  npm 文件缓存目录
+scaffolds     文夹件下存放的是文章、页面模版
+scource       文夹件下存放的是我们的资源文件
+themes        文件下存放的是我们的主题文件
+.gitignore    git 忽略文件，设置提交文件时，哪些文件不提交
+_config.yml   站点配置文件
+package.json  站点版本，站点依赖文件</code></pre><p>通过预览你肯定已经知道，默认主题真的，很丑！，所以我们可以在网上找一个自己喜欢的主题，hexo官网主题 <a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a></p>
+<p>将自己下载好的主题文件解压到 <strong>blog\themes</strong> 文件夹下</p>
+<p>修改<code>_config.yml</code>中的<code>theme: landscape</code>改为<code>theme: fox</code>(fox为我下载的主题的文件名)，然后重新执行<code>hexo g</code>来重新生成，<code>hexo s</code> 继续预览</p>
+<p>如果出现一些莫名其妙的问题，可以先执行<code>hexo clean</code>来清理一下public的内容，然后再来重新生成和发布。</p>
+<h3 id="项目上传到github"><a href="#项目上传到github" class="headerlink" title="项目上传到github"></a>项目上传到github</h3><p>打开github中建的项目，点击clone or download，选择<strong>use ssh</strong> 点击复制</p>
+<p>打开blog文件夹下配置文件 <strong>_config.yml</strong>   </p>
+<p>配置 <strong>_config.yml</strong> 中有关deploy的部分，复制的内容相信你们已经知道放到哪儿了</p>
+<pre><code>deploy:
+  type: git
+  repository: git@github.com:liuxianan/liuxianan.github.io.git
+  branch: master</code></pre><p>配置好后,输入如下命令</p>
+<pre><code>hexo clean
+hexo g
+hexo d</code></pre><p>不出意外，你应该报错了：</p>
+<pre><code>Deployer not found: github 或者 Deployer not found: git</code></pre><p>原因是还需要安装一个插件：</p>
+<pre><code>npm install hexo-deployer-git --save</code></pre><p>其它命令不确定，部署这个命令一定要用git bash，否则会提示<code>Permission denied (publickey).</code></p>
+<p>打开你的git bash，输入<code>hexo d</code>就会将本次有改动的代码全部提交，没有改动的不会：</p>
+<h2 id="成功"><a href="#成功" class="headerlink" title="成功"></a>成功</h2><p>提交完成，打开<strong>√ Your site is published at <a href="https://username.github.io/" target="_blank" rel="noopener">https://username.github.io/</a></strong> 后面网址，不出意外，应该成功了</p>
+<p>如果你想改变你的访问网址，则需买一个域名，穷b的我就不说了</p>
+<p>有问题找：</p>
+<p>qq： 1059205255</p>
+<p>github： <a href="https://guyueshuiqing.github.io/">https://guyueshuiqing.github.io/</a></p>
+<p>喜欢的话点一颗小星星啦，谢谢大家</p>
 
             </div>
             <hr/>
@@ -642,57 +710,43 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/07/20/vueBook/">
+                <a href="/2019/09/06/GitPage+Heaxo/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Vue学习文档">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">Vue学习文档</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            vue基础与vue简单实战细节技术讲解
+                            Hexo+GitPage实现个人博客环境
+[node.js]: http://nodejs.cn/download/    “ node.js”
+检验是否安装成功：
+命令：node -v显示：v10.16.0（版本可能跟我不一样） 
+命令：
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-06
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/前端/" class="post-category" target="_blank">
-                                    前端
-                                </a>
-                            
-                            <a href="/categories/前端/vue/" class="post-category" target="_blank">
-                                    vue
-                                </a>
-                            
+                            <i class="fa fa-user fa-fw"></i>
+                            GuYue
                             
                         </span>
                     </div>
                 </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Typora/" target="_blank">
-                        <span class="chip bg-color">Typora</span>
-                    </a>
-                    
-                    <a href="/tags/Markdown/" target="_blank">
-                        <span class="chip bg-color">Markdown</span>
-                    </a>
-                    
-                </div>
+
                 
             </div>
         </div>
@@ -703,24 +757,24 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2018/05/20/css重学习/">
+                <a href="/2019/07/20/Responsive/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="CSS学习">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="响应式开发">
                         
-                        <span class="card-title">CSS学习</span>
+                        <span class="card-title">响应式开发</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            CSS学习、HTML面试、CSS基础面试题、CSS布局（重点）、css预处理等
+                            弹性网格、弹性图片、媒体查询等多项技术综合
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-05-20
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-20
                             </span>
                         <span class="publish-author">
                             
@@ -730,16 +784,8 @@
                                     前端
                                 </a>
                             
-                            <a href="/categories/前端/html/" class="post-category" target="_blank">
-                                    html
-                                </a>
-                            
-                            <a href="/categories/前端/html/css/" class="post-category" target="_blank">
-                                    css
-                                </a>
-                            
-                            <a href="/categories/前端/html/css/面试/" class="post-category" target="_blank">
-                                    面试
+                            <a href="/categories/前端/响应式开发/" class="post-category" target="_blank">
+                                    响应式开发
                                 </a>
                             
                             
