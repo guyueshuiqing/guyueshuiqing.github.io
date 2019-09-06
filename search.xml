@@ -4,17 +4,6 @@
   
     
     <entry>
-      <title></title>
-      <link href="/2019/09/06/GitPage+Heaxo/"/>
-      <url>/2019/09/06/GitPage+Heaxo/</url>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>响应式开发</title>
       <link href="/2019/07/20/Responsive/"/>
       <url>/2019/07/20/Responsive/</url>
@@ -79,6 +68,35 @@
           <category> git </category>
           
           <category> tools </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Typora </tag>
+            
+            <tag> Markdown </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>GitHub+Hexo实现个人博客</title>
+      <link href="/2018/09/06/GitPage+Heaxo/"/>
+      <url>/2018/09/06/GitPage+Heaxo/</url>
+      
+      
+      <categories>
+          
+          <category> blog </category>
+          
+          <category> github </category>
+          
+          <category> git </category>
           
       </categories>
       
